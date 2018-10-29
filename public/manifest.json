@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Chat all Url",
+  "description": "Questa applicazione ti permette di scambiare messaggi brevi con chi è collegato alla tua stessa pagina!",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Scambia messaggi"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content_script.js",
+        "socket.io.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "APP/background.js"
+    ],
+    "persistent": true
+  }
+}

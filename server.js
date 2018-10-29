@@ -8,10 +8,21 @@ app.get('/', function (req, res) {
 });
 
 const port = 5000
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-server = app.listen(port, function () {
-    console.log('server is running on port ' + port)
-});
+if (process.env.OPENSHIFT_NODEJS_PORT) {
+    var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+    var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+    server = app.listen(server_port, server_ip_address, function () {
+        console.log('server is running on port ' + server_port)
+    });
+}
+else {
+    server = app.listen(port, function () {
+        console.log('server is running on port ' + port)
+    });
+}
 
 io = socket.listen(server);
 var count = 0;

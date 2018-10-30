@@ -8,7 +8,9 @@ import Message from './messages';
 
 var server_port = process.env.PORT || 8080;
 
+
 const socket = io(server_port);
+//const socket = io('http://localhost:5000');
 const url = 'http:www.google.it';
 
 class Chat extends Component {

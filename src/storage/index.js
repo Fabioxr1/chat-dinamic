@@ -5,11 +5,11 @@ export const storageMiddleware = (store) => (next) => (action) => {
             localStorage['user'] = JSON.stringify(store.getState().chatOption.user); 
           }       
     }
-    if (action.type === 'SOCKET_INSERT_MESSAGE') {
-        next(action);
-        if (localStorage['message'] !== JSON.stringify(store.getState().chatMessage)) {
-            localStorage['message'] = JSON.stringify(store.getState().chatMessage);
-          }         
-    }
+    // if (action.type === 'SOCKET_INSERT_MESSAGE') {
+    //     next(action);
+    //     if (localStorage['message'] !== JSON.stringify(store.getState().chatMessage)) {
+    //         localStorage['message'] = JSON.stringify(store.getState().chatMessage);
+    //       }         
+    // }
     return next(action);
 }

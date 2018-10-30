@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-//import { storageMiddleware } from './storage/index';
+import { storageMiddleware } from './storage/index';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
@@ -18,7 +18,7 @@ import Chat from './container/chat';
 
 
 const reduxDevTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
-const createStoreWhitMiddleware = applyMiddleware(thunk)(createStore)
+const createStoreWhitMiddleware = applyMiddleware(storageMiddleware,thunk)(createStore)
 
 ReactDOM.render(
     <Provider store={createStoreWhitMiddleware(rootReducer, reduxDevTools)}>

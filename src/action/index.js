@@ -59,7 +59,7 @@ export function socketEmitReciveMessage(socket) {
     }
 }
 
-export function retriveUrlTabsBuild(socket, url) {
+export function retriveUrlTabsBuilds(socket) {
     return (dispatch) => {
         chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
             socket.emit('CHANGE_ROOM', tabs[0].url);
@@ -70,14 +70,14 @@ export function retriveUrlTabsBuild(socket, url) {
         })
     }
 }
+//retriveUrlTabsBuild action finale
 
-
-export function retriveUrlTabs(socket, url) {
-    socket.emit('CHANGE_ROOM', url);
+export function retriveUrlTabsBuild(socket) {
+    socket.emit('CHANGE_ROOM','room production');
     return (dispatch) => {
         dispatch({
             type: RETRIVE_URL_TABS,
-            payload: url
+            payload: 'room production'
         })
     }
 }

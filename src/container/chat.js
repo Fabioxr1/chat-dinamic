@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import _ from 'lodash';
-import { socketConnect, socketEmitMessage, retriveUrlTabs,socketCountUserOnLine } from '../action';
+import { socketConnect, socketEmitMessage, retriveUrlTabsBuild,socketCountUserOnLine } from '../action';
 import TipingChat from '../component/typing';
 import Message from './messages';
 
-var server_port = process.env.PORT || 8080;
+//var server_port = process.env.PORT || 8080;
 
 
-const socket = io(server_port);
+const socket = io('http://chat-simple-chat-simple.a3c1.starter-us-west-1.openshiftapps.com/');
 //const socket = io('http://localhost:5000');
-const url = 'http:www.google.it';
+//const url = 'http:www.google.it';
 
 class Chat extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Chat extends Component {
 
     componentDidMount() {
         this.props.socketConnect(socket) // test init connection   
-        this.props.retriveUrlTabs(socket,url);
+        this.props.retriveUrlTabsBuild(socket);
         this.props.socketCountUserOnLine(socket)
     }
 
@@ -80,7 +80,6 @@ class Chat extends Component {
         const userOnLine = this.props.chatOption.userConnect;
         const userName = this.props.chatOption.user
         const { message, write_message} = this.state;
-
         return (
             <div className="row">
                 <div className="col-12">
@@ -121,4 +120,4 @@ class Chat extends Component {
 function mapStateToProps({ chatOption }) {
     return { chatOption }
 }
-export default connect(mapStateToProps, { socketConnect, socketEmitMessage, retriveUrlTabs,socketCountUserOnLine })(Chat)
+export default connect(mapStateToProps, { socketConnect, socketEmitMessage, retriveUrlTabsBuild,socketCountUserOnLine })(Chat)

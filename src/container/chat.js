@@ -6,8 +6,9 @@ import { socketConnect, socketEmitMessage, retriveUrlTabs,socketCountUserOnLine 
 import TipingChat from '../component/typing';
 import Message from './messages';
 
+var server_port = process.env.PORT || 8080;
 
-const socket = io('http://localhost:5000');
+const socket = io(server_port);
 const url = 'http:www.google.it';
 
 class Chat extends Component {
